@@ -21,7 +21,7 @@ app.get("/prof" , async (req,res) => {
 
 const port = process.env.PORT || 8002
 
-app.listen(port, (res,req) => {
-    console.log(`app run on ` + port)
+app.listen(process.env.PORT || 8002, (res,req) => {
+    console.log(`app run on `)
 })
 
