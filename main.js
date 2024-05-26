@@ -13,7 +13,7 @@ app.use(cors({
 
 
 
-app.get("/user" , async (req,res) => {
+app.get("/" , async (req,res) => {
   res.json("hello mohammed")
 })
 
