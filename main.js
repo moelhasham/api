@@ -8,8 +8,8 @@ const app = express()
 app.use(express.json())
 const axios = require('axios');
 
-const corsOptions = {
-  origin: 'http://localhost:5174',
+var corsOptions = {
+  origin:'http://localhost:5174',
  
 }
 
