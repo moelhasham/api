@@ -8,7 +8,7 @@ const app = express()
 app.use(express.json())
 const axios = require('axios');
 app.use(cors({
-  origin:"http://localhost:5173"
+  origin:"https://siri-app-894307e56009.herokuapp.com"
 }))
 
 
