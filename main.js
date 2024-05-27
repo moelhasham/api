@@ -13,14 +13,14 @@ app.use(cors({
 }));
 
 app.get("/" , async (req,res) => {
-  res.json("server run")
+  await res.json("server run")
 })
 
 app.get("/user" , async (req,res) => {
-  res.json("hi user ")
+ await res.json("hi user ")
 })
 
-app.post("/pay",cors(origin),  async (req,res) => {
+app.post("/pay",  async (req,res) => {
   
   const Msisdn = req.body.Msisdn 
   const BirthYear = req.body.BirthYear 
