@@ -4,19 +4,20 @@ var cors = require('cors')
 const app = express()
 app.use(express.json())
 
-const {ver} = require("./util/vervy")
 
 
-app.use(cors())
-var corsOptions = {
-  origin: 'https://dapper-bombolone-84d12f.netlify.app',
 
-}
-app.get("/" ,cors(corsOptions), async (req,res) => {
+app.use(cors({
+  credentials: true,
+  
+}));
+
+app.get("/" , async (req,res) => {
   res.json("server run")
 })
 
-app.post("/pay", cors(corsOptions) ,  async (req,res) => {
+app.post("/pay",  async (req,res) => {
+  
   const Msisdn = req.body.Msisdn 
   const BirthYear = req.body.BirthYear 
   const InvoiceNo =  req.body.InvoiceNo
