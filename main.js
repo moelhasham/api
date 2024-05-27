@@ -31,7 +31,7 @@ app.get("/" , async (req,res) => {
   res.json("server run")
 })
 
-app.post("/pay",  async (req,res) => {
+app.post("/pay",cors(origin),  async (req,res) => {
   
   const Msisdn = req.body.Msisdn 
   const BirthYear = req.body.BirthYear 
@@ -45,7 +45,7 @@ app.post("/pay",  async (req,res) => {
     headers:{
       "Content-Type": "application/json",
       "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiU2FkYWRQR1ciLCJjb3Jwb3JhdGVTZXJ2aWNlSWQiOjIzOTksImFwcElkIjoiMTQxZTNiMDY4MDQ5NDk0Y2E5Mjc4YjY2ZmUzMGU2OWYiLCJleHAiOjIwMzAyNjczNjUsImlzcyI6IkNvcmV0ZWMiLCJhdWQiOiJTQURBRFBHVyJ9.PSvwNOLznVSVFg5uJofg812gcj9zfAZnkCMw7gCfgqw",
-      'Access-Control-Allow-Origin': "*"
+     
     }
    })
    
