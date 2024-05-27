@@ -7,7 +7,9 @@ app.use(express.json())
 const {ver} = require("./util/vervy")
 
 
-app.use(cors())
+app.use(cors(
+  {origin:"https://dapper-bombolone-84d12f.netlify.app"}
+))
 
 app.get("/" , async (req,res) => {
   res.json("server run")
