@@ -5,22 +5,7 @@ const app = express()
 app.use(express.json())
 
 
-app.use(function (req, res, next) {
 
-  // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
-
-  // Request methods you wish to allow
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-  // Request headers you wish to allow
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-  res.setHeader('Access-Control-Allow-Credentials', true);
-
-  
-  next();
-});
 
 app.use(cors({
   origin: "*",
@@ -29,6 +14,10 @@ app.use(cors({
 
 app.get("/" , async (req,res) => {
   res.json("server run")
+})
+
+app.get("/user" , async (req,res) => {
+  res.json("hi user ")
 })
 
 app.post("/pay",cors(origin),  async (req,res) => {
