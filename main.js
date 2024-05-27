@@ -1,19 +1,16 @@
 const express = require("express")
 require('dotenv').config()
-const userspath = require("./routes/users")
-const {sendemail} = require("./util/sendemil")
 var cors = require('cors')
-const path = require('path');
 const app = express()
 app.use(express.json())
-const axios = require('axios');
+
 const {ver} = require("./util/vervy")
 
 
 app.use(cors())
 
 
-app.use(ver)
+
 app.post("/pay",async (req,res) => {
   const Msisdn = req.body.Msisdn 
   const BirthYear = req.body.BirthYear 
