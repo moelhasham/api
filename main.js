@@ -9,9 +9,11 @@ const {ver} = require("./util/vervy")
 
 app.use(cors())
 
+app.get("/" , async (req,res) => {
+  res.json("server run")
+})
 
-
-app.post("/pay",async (req,res) => {
+app.post("/pay", async (req,res) => {
   const Msisdn = req.body.Msisdn 
   const BirthYear = req.body.BirthYear 
   const InvoiceNo =  req.body.InvoiceNo
