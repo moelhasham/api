@@ -14,9 +14,9 @@ app.use(cors())
 app.post("/pay",async (req,res) => {
   const Msisdn = req.body.Msisdn 
   const BirthYear = req.body.BirthYear 
-  const InvoiceNo =  "RO0223" 
-  const Amount = 500
-  const Category = 11
+  const InvoiceNo =  req.body.InvoiceNo
+  const Amount = req.body.Amount 
+  const Category = req.body.Category
 
   const resp = await fetch("https://pgw.almadar.ly/api/Validate", {
     method:'POST',
