@@ -1,12 +1,12 @@
 const express = require("express")
 require('dotenv').config()
 var cors = require('cors')
-
+const {ver} = require("./util/vervy")
 const app = express()
 app.use(express.json())
 
 
-
+app.use(ver)
 
 app.use(cors({ origin: true }));
 
@@ -47,15 +47,17 @@ app.post("/pay",  async (req,res) => {
 
 app.post("/confirm", async (req,res) => {
 
-  const  TransactionId = req.body.TransactionId
-  const  OTP = req.body.OTP
-  const data = await fetch("https://pgw.almadar.ly/api/Pay", {
+  const  process_id = req.body.process_id
+  const  code = req.body.code
+  const  amount = req.body.amount
+  const  invoice_no = req.body.invoice_no
+  const data = await fetch("https://api.plutus.ly/api/v1/transaction/sadadapi/confirm", {
     method:'POST',
-    body: JSON.stringify({TransactionId,OTP}),
+    body: JSON.stringify({process_id,code,amount,invoice_no}),
     headers:{
       "Content-Type": "application/json",
-      "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiU2FkYWRQR1ciLCJjb3Jwb3JhdGVTZXJ2aWNlSWQiOjIzOTksImFwcElkIjoiMTQxZTNiMDY4MDQ5NDk0Y2E5Mjc4YjY2ZmUzMGU2OWYiLCJleHAiOjIwMzAyNjczNjUsImlzcyI6IkNvcmV0ZWMiLCJhdWQiOiJTQURBRFBHVyJ9.PSvwNOLznVSVFg5uJofg812gcj9zfAZnkCMw7gCfgqw",
-       
+      "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOWFiMmNhYTc1OGVlZDU3Yjk1ODdjYTQ1ODY0YWM2MjA3NWIxMGEwYTM2MmRiMjk5MWFkZmVkNmMzY2Y4MDQwMGRhYjc0NTIyZDM2NjlhZmYiLCJpYXQiOjE3MTY4OTQwMTQuMDkzNzg3LCJuYmYiOjE3MTY4OTQwMTQuMDkzNzg5LCJleHAiOjIwMzI0MjY4MTQuMDg3OTQyLCJzdWIiOiI4NzAiLCJzY29wZXMiOltdfQ.jHPz4d9IljEDauFK1lRRnQt0npm_dRCMPWaK_1eayFTn6Q-jKBz9KFnN5W0OjedMghm38J-6f_-PmNY1xW85n2pAW_pOUymqwNnr-4n7MHN5n2N_YBtl_tamuNdXHzIZdBjwEQUElVC_ZHj24hwIJYTJHcuaMB7HrCJY6bNms-erxH8AdcvY7UqEIltftm_RdBTWGkbA9fidwMKCOYM-17Za9-QNolPq7Y6j17YnOCxRwF7F2-5g4YrjSDzhXyJ_nPuKaxTDOcVMvxzpihzVl-AGhlw6Sx3hWdhMPFnX1KQPxtmsCXnFbAJN_AU5PZGaivsEuVZQTKEFBcT3BsqFhDWUqyBUAb9oLALdtFguu3NFnnzOx75QBnDg2HnH_NFNY29VnI_WfPWLwTXU3wqfUQFSTwt9ozpZq_298FPzPCm-gRrPc_AfSPmj4Z2R4Ppgqo9cLwDOI3bGKnQgOekZYbVaF4YV7Tbs6msCIZtp-rpic3JO55qIms2p4GX9YPDPMeqLiZ8IvnL3zb_i4X-uFWjPoW9kn0RImVdeaJZN3voeRUg3kV8w7FNlz-55kXNgaBffMtgTeFfMCSw6vfT482ioux5pNZUPrf9JDS4uw9E61h7ohLspHw5bNmGH1wWHTAfS0yys-Q8x3L9OU2A5O_iM4y-LApX5v3vcSQe1HOc",
+      "X-API-KEY": "984adf4c-44e1-418f-829b"
     }
    })
    const result = await data.json()
