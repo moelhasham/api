@@ -21,19 +21,19 @@ app.get("/user" , async (req,res) => {
 
 app.post("/pay",  async (req,res) => {
   
-  const mobile_number = req.body.mobile_number
-  const birth_year = req.body.birth_year 
-  const amount =  req.body.amount
-  // const Amount = req.body.Amount 
-  // const Category = req.body.Category
+  const Msisdn = req.body.Msisdn
+  const BirthYear = req.body.BirthYear 
+  const InvoiceNo =  req.body.InvoiceNo
+  const Amount = 1 
+  const Category = 11
 
-  const resp = await fetch("https://api.plutus.ly/api/v1/transaction/sadadapi/verify", {
+  const resp = await fetch("https://pgw.almadar.ly/api/Validate", {
     method:'POST',
-    body: JSON.stringify({mobile_number,birth_year,amount}),
+    body: JSON.stringify({Msisdn,BirthYear,InvoiceNo,Amount,Category}),
     headers:{
       "Content-Type": "application/json",
-      "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOWFiMmNhYTc1OGVlZDU3Yjk1ODdjYTQ1ODY0YWM2MjA3NWIxMGEwYTM2MmRiMjk5MWFkZmVkNmMzY2Y4MDQwMGRhYjc0NTIyZDM2NjlhZmYiLCJpYXQiOjE3MTY4OTQwMTQuMDkzNzg3LCJuYmYiOjE3MTY4OTQwMTQuMDkzNzg5LCJleHAiOjIwMzI0MjY4MTQuMDg3OTQyLCJzdWIiOiI4NzAiLCJzY29wZXMiOltdfQ.jHPz4d9IljEDauFK1lRRnQt0npm_dRCMPWaK_1eayFTn6Q-jKBz9KFnN5W0OjedMghm38J-6f_-PmNY1xW85n2pAW_pOUymqwNnr-4n7MHN5n2N_YBtl_tamuNdXHzIZdBjwEQUElVC_ZHj24hwIJYTJHcuaMB7HrCJY6bNms-erxH8AdcvY7UqEIltftm_RdBTWGkbA9fidwMKCOYM-17Za9-QNolPq7Y6j17YnOCxRwF7F2-5g4YrjSDzhXyJ_nPuKaxTDOcVMvxzpihzVl-AGhlw6Sx3hWdhMPFnX1KQPxtmsCXnFbAJN_AU5PZGaivsEuVZQTKEFBcT3BsqFhDWUqyBUAb9oLALdtFguu3NFnnzOx75QBnDg2HnH_NFNY29VnI_WfPWLwTXU3wqfUQFSTwt9ozpZq_298FPzPCm-gRrPc_AfSPmj4Z2R4Ppgqo9cLwDOI3bGKnQgOekZYbVaF4YV7Tbs6msCIZtp-rpic3JO55qIms2p4GX9YPDPMeqLiZ8IvnL3zb_i4X-uFWjPoW9kn0RImVdeaJZN3voeRUg3kV8w7FNlz-55kXNgaBffMtgTeFfMCSw6vfT482ioux5pNZUPrf9JDS4uw9E61h7ohLspHw5bNmGH1wWHTAfS0yys-Q8x3L9OU2A5O_iM4y-LApX5v3vcSQe1HOc",
-      "X-API-KEY": "984adf4c-44e1-418f-829b",
+      "SharedKey": "u-srNIFp8Ch2IwDFfh5BT6LoQ4EvwxI5",
+      "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiU2FkYWRQR1ciLCJjb3Jwb3JhdGVTZXJ2aWNlSWQiOjIzOTksImFwcElkIjoiMTQxZTNiMDY4MDQ5NDk0Y2E5Mjc4YjY2ZmUzMGU2OWYiLCJleHAiOjIwMzAyNjczNjUsImlzcyI6IkNvcmV0ZWMiLCJhdWQiOiJTQURBRFBHVyJ9.PSvwNOLznVSVFg5uJofg812gcj9zfAZnkCMw7gCfgqw",
       "Access-Control-Allow-Origin": "*",
     }
    })
@@ -49,17 +49,18 @@ app.post("/pay",  async (req,res) => {
 
 app.post("/confirm", async (req,res) => {
 
-  const  process_id = req.body.process_id
-  const  code = req.body.code
-  const  amount = req.body.amount
-  const  invoice_no = req.body.invoice_no
-  const data = await fetch("https://api.plutus.ly/api/v1/transaction/sadadapi/confirm", {
+  const  TransactionId = req.body.TransactionId
+  const  OTP = req.body.OTP
+  // const  amount = req.body.amount
+  // const  invoice_no = req.body.invoice_no
+  const data = await fetch("https://pgw.almadar.ly/api/Pay", {
     method:'POST',
-    body: JSON.stringify({process_id,code,amount,invoice_no}),
+    body: JSON.stringify({TransactionId,OTP}),
     headers:{
       "Content-Type": "application/json",
-      "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOWFiMmNhYTc1OGVlZDU3Yjk1ODdjYTQ1ODY0YWM2MjA3NWIxMGEwYTM2MmRiMjk5MWFkZmVkNmMzY2Y4MDQwMGRhYjc0NTIyZDM2NjlhZmYiLCJpYXQiOjE3MTY4OTQwMTQuMDkzNzg3LCJuYmYiOjE3MTY4OTQwMTQuMDkzNzg5LCJleHAiOjIwMzI0MjY4MTQuMDg3OTQyLCJzdWIiOiI4NzAiLCJzY29wZXMiOltdfQ.jHPz4d9IljEDauFK1lRRnQt0npm_dRCMPWaK_1eayFTn6Q-jKBz9KFnN5W0OjedMghm38J-6f_-PmNY1xW85n2pAW_pOUymqwNnr-4n7MHN5n2N_YBtl_tamuNdXHzIZdBjwEQUElVC_ZHj24hwIJYTJHcuaMB7HrCJY6bNms-erxH8AdcvY7UqEIltftm_RdBTWGkbA9fidwMKCOYM-17Za9-QNolPq7Y6j17YnOCxRwF7F2-5g4YrjSDzhXyJ_nPuKaxTDOcVMvxzpihzVl-AGhlw6Sx3hWdhMPFnX1KQPxtmsCXnFbAJN_AU5PZGaivsEuVZQTKEFBcT3BsqFhDWUqyBUAb9oLALdtFguu3NFnnzOx75QBnDg2HnH_NFNY29VnI_WfPWLwTXU3wqfUQFSTwt9ozpZq_298FPzPCm-gRrPc_AfSPmj4Z2R4Ppgqo9cLwDOI3bGKnQgOekZYbVaF4YV7Tbs6msCIZtp-rpic3JO55qIms2p4GX9YPDPMeqLiZ8IvnL3zb_i4X-uFWjPoW9kn0RImVdeaJZN3voeRUg3kV8w7FNlz-55kXNgaBffMtgTeFfMCSw6vfT482ioux5pNZUPrf9JDS4uw9E61h7ohLspHw5bNmGH1wWHTAfS0yys-Q8x3L9OU2A5O_iM4y-LApX5v3vcSQe1HOc",
-      "X-API-KEY": "984adf4c-44e1-418f-829b"
+      "SharedKey": "u-srNIFp8Ch2IwDFfh5BT6LoQ4EvwxI5",
+      "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiU2FkYWRQR1ciLCJjb3Jwb3JhdGVTZXJ2aWNlSWQiOjIzOTksImFwcElkIjoiMTQxZTNiMDY4MDQ5NDk0Y2E5Mjc4YjY2ZmUzMGU2OWYiLCJleHAiOjIwMzAyNjczNjUsImlzcyI6IkNvcmV0ZWMiLCJhdWQiOiJTQURBRFBHVyJ9.PSvwNOLznVSVFg5uJofg812gcj9zfAZnkCMw7gCfgqw",
+      "Access-Control-Allow-Origin": "*",
     }
    })
    const result = await data.json()
