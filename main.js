@@ -8,7 +8,7 @@ app.use(express.json())
 
 app.use(ver)
 
-app.use(cors({ origin: true }));
+app.use(cors());
 
 app.get("/" , async (req,res) => {
   await res.json("server run")
