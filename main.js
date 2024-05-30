@@ -11,7 +11,7 @@ var corsOptions = {
   origin: 'http://localhost:5173'
 };
 app.use(cors());
-app.use(ver)
+
 app.get("/" , async (req,res) => {
   await res.json("server run")
 })
