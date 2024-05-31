@@ -1,15 +1,12 @@
 const express = require("express")
 require('dotenv').config()
 var cors = require('cors')
-const {ver} = require("./util/vervy")
 const app = express()
 const axios = require("axios")
 app.use(express.json())
 
 
-var corsOptions = {
-  origin: 'http://localhost:5173'
-};
+
 app.use(cors());
 
 app.get("/" , async (req,res) => {
@@ -60,14 +57,14 @@ app.post("/confirm", async (req,res) => {
    res.json(result)
 })
 
-app.get("/prof" ,cors(corsOptions), async (req,res) => {
+app.get("/prof" , async (req,res) => {
   res.json("https://media.wired.com/photos/598e35994ab8482c0d6946e0/master/w_1920,c_limit/phonepicutres-TA.jpg")
 })
 
 
-const port = process.env.PORT || 8800
 
-app.listen(process.env.PORT || 8800, (res,req) => {
+
+app.listen(8800, (res,req) => {
     console.log(`app run on`)
 })
 
